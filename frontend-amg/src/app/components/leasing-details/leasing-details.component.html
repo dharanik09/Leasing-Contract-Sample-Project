@@ -1,0 +1,99 @@
+<div *ngIf="viewMode; else editable">
+
+    <div *ngIf="currentLeasing.id">
+      <h4>Leasing</h4>
+      <div>
+        <label><strong>Contract Number:</strong></label> {{ currentLeasing.contractNumber }}
+      </div>
+      <div>
+        <label><strong>Monthly Rate:</strong></label>
+        {{ currentLeasing.monthlyRate }}
+      </div>
+  
+      <div>
+        <label><strong>Customer:</strong></label>
+        {{ currentLeasing.customer }}
+      </div>
+  
+      <div>
+        <label><strong>Vehicle:</strong></label>
+        {{ currentLeasing.vehicle }}
+      </div>
+  
+      <a
+        class="badge badge-warning"
+        routerLink="/Leasings/{{ currentLeasing.id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentLeasing">
+      <br />
+      <p>Please click on a Leasing...</p>
+    </div>
+  </div>
+
+  <ng-template #editable>
+    <div *ngIf="currentLeasing.id" class="edit-form">
+      <h4>Leasing</h4>
+      <form>
+        <div class="form-group">
+          <label for="contractNumber">Contract Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contractNumber"
+            [(ngModel)]="currentLeasing.contractNumber"
+            name="contractNumber"
+          />
+        </div>
+        <div class="form-group">
+          <label for="monthlyRate">Monthly Rate</label>
+          <input
+            type="text"
+            class="form-control"
+            id="monthlyRate"
+            [(ngModel)]="currentLeasing.monthlyRate"
+            name="monthlyRate"
+          />
+        </div>
+        <div class="form-group">
+          <select id="customer_id" class="form-control" name="customer_id" 
+          [(ngModel)]="currentLeasing.customer_id" >
+            <option value="default">Select Customer</option>
+            <option *ngFor="let customer of selectCustomer"  [value]="customer.id" >
+              {{customer.first_name}} {{customer.last_name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="vehicle">Vehicle</label>
+            <select id="vehicle_id" class="form-control" name="vehicle_id" [(ngModel)]="currentLeasing.vehicle_id">
+              <option value="default">Select Customer</option>
+              <option *ngFor="let vehicle of selectVehicle"  [value]="vehicle.id" >
+                {{vehicle.brand}} {{vehicle.model}} ({{vehicle.model_year}})</option>
+            </select>
+             
+          </div>
+  
+
+
+      </form>
+  
+
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateLeasing()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentLeasing.id">
+      <br />
+      <p>Cannot access this Leasing...</p>
+    </div>
+  </ng-template>
+  

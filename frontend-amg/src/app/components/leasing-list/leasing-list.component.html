@@ -1,0 +1,41 @@
+<div class="list row">
+    <div class="col-md-12">
+      <h4>Leasing Contract Details</h4>
+      <a href="#" routerLink="add" class="btn btn-primary">Add</a>
+      <table class="table table-striped">
+        <thead>
+              <tr>
+                <th>ID</th>
+                <th>Contract Number</th>
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>VIN</th>
+                <th>Monthly Rate</th>
+                <th>Vehicle Price</th>
+                <th>Details</th>
+              </tr>
+        </thead>
+        <tbody>
+              <tr *ngFor="let leasing of showData; let i = index">
+                <td >{{i + 1}} </td>
+                <td [class.active]="i == currentIndex"  (click)="setActiveLeasing(leasing, i)">{{ leasing.contractNumber }}</td>
+                <td>{{leasing.customer.first_name}} {{leasing.customer.last_name}}</td>
+                <td>{{leasing.vehicle.brand}} {{leasing.vehicle.model}} ({{leasing.vehicle.model_year}})</td>
+                <td>{{leasing.vehicle.vin}} </td>
+                <td>{{leasing.monthlyRate }}</td>
+                <td>{{leasing.vehicle.price }}</td>
+                <td>
+                  <a href="#" routerLink="/leasing/{{ leasing.id }}" class="btn btn-primary">Edit</a>
+                  <button type="button" (click)="deleteLeasing(leasing.id)" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+        </tbody>
+    </table>
+
+    </div>
+    <div class="col-md-3">
+      <app-leasing-details
+        [viewMode]="true"
+      ></app-leasing-details>
+    </div>
+  </div>

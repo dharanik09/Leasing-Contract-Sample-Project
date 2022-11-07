@@ -1,0 +1,111 @@
+<div *ngIf="viewMode; else editable">
+
+    <div *ngIf="currentVehicle.id">
+      <h4>Vehicle</h4>
+      <div>
+        <label><strong>brand:</strong></label> {{ currentVehicle.brand }}
+      </div>
+      <div>
+        <label><strong>Model:</strong></label>
+        {{ currentVehicle.model }}
+      </div>
+      <div>
+        <label><strong>Model Year:</strong></label>
+        {{ currentVehicle.model_year }}
+      </div>
+      <div>
+        <label><strong>Price:</strong></label>
+        {{ currentVehicle.price }}
+      </div>
+      <div>
+        <label><strong>VIN</strong></label>
+        {{ currentVehicle.vin }}
+      </div>
+      <a
+        class="badge badge-warning"
+        routerLink="/Vehicles/{{ currentVehicle.id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentVehicle">
+      <br />
+      <p>Please click on a Vehicle...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentVehicle.id" class="edit-form">
+      <h4>Vehicle</h4>
+
+      <form>
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input
+            type="text"
+            class="form-control"
+            id="brand"
+            [(ngModel)]="currentVehicle.brand"
+            name="brand"
+          />
+        </div>
+        <div class="form-group">
+          <label for="model">Model</label>
+          <input
+            type="text"
+            class="form-control"
+            id="model"
+            [(ngModel)]="currentVehicle.model"
+            name="model"
+          />
+        </div>
+        <div class="form-group">
+          <label for="model_year">Model Year</label>
+          <input
+            type="text"
+            class="form-control"
+            id="model_year"
+            [(ngModel)]="currentVehicle.model_year"
+            name="model_year"
+          />
+        </div>
+        <div class="form-group">
+          <label for="model">Price</label>
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            [(ngModel)]="currentVehicle.price"
+            name="price"
+          />
+        </div>
+        <div class="form-group">
+          <label for="model">VIN</label>
+          <input
+            type="text"
+            class="form-control"
+            id="vin"
+            [(ngModel)]="currentVehicle.vin"
+            name="vin"
+          />
+        </div>
+      </form>
+  
+
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateVehicle()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentVehicle.id">
+      <br />
+      <p>Cannot access this Vehicle...</p>
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,88 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentCustomer.id">
+      <h4>Customer</h4>
+      <div>
+        <label><strong>first_name:</strong></label> {{ currentCustomer.first_name }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentCustomer.last_name }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentCustomer.birthdate ? "birthdate" : "Pending" }}
+      </div>
+  
+      <a
+        class="badge badge-warning"
+        routerLink="/customers/{{ currentCustomer.id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentCustomer">
+      <br />
+      <p>Please click on a Customer...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentCustomer.id" class="edit-form">
+      <h4>Customer</h4>
+      <form>
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="first_name"
+            [(ngModel)]="currentCustomer.first_name"
+            name="first_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="last_name"
+            [(ngModel)]="currentCustomer.last_name"
+            name="last_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Birth Date</label>
+          <input
+            type="text"
+            class="form-control"
+            id="birthdate"
+            [(ngModel)]="currentCustomer.birthdate"
+            name="birthdate"
+          />
+        </div>
+  
+  <!--      <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentCustomer.birthdate ? "birthdate" : "Pending" }}
+        </div>
+      -->
+      </form>
+  
+
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateCustomer()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentCustomer.id">
+      <br />
+      <p>Cannot access this Customer...</p>
+    </div>
+  </ng-template>
+  

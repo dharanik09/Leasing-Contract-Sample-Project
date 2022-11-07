@@ -1,0 +1,42 @@
+<div class="list row">
+    <div class="col-md-9">
+      <h4>Vehicle Details</h4>
+      <a href="#" routerLink="add" class="btn btn-primary">Add</a>
+  
+      <table class="table table-striped">
+        <thead>
+              <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Model year</th>
+                <th>Price</th>
+                <th>VIN</th>
+                <th>Action</th>
+              </tr>
+        </thead>
+        <tbody>
+              <tr *ngFor="let vehicle of vehicle; let i = index">
+                <td [class.active]="i == currentIndex"  (click)="setActiveVehicle(vehicle, i)">{{ i + 1 }}</td>
+                <td [class.active]="i == currentIndex"  (click)="setActiveVehicle(vehicle, i)">{{ vehicle.brand }}</td>
+                <td [class.active]="i == currentIndex"  (click)="setActiveVehicle(vehicle, i)">{{ vehicle.model }}</td>
+                <td [class.active]="i == currentIndex"  (click)="setActiveVehicle(vehicle, i)">{{vehicle.model_year }}</td>
+                <td [class.active]="i == currentIndex"  (click)="setActiveVehicle(vehicle, i)">{{vehicle.price }}</td>
+                <td [class.active]="i == currentIndex"  (click)="setActiveVehicle(vehicle, i)">{{vehicle.vin }}</td>
+                <td>
+                  <!--<a href="#" [routerLink]="['/post/', Vehicle.id, 'view']" class="btn btn-info">View</a>-->
+                  <a href="#" routerLink="/vehicle/{{ vehicle.id }}" class="btn btn-primary">Edit</a>
+                  <button type="button" (click)="deleteVehicle(vehicle.id)" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+        </tbody>
+    </table>
+
+    </div>
+    <div class="col-md-3">
+      <app-vehicle-details
+        [viewMode]="true"
+        [currentVehicle]="currentVehicle"
+      ></app-vehicle-details>
+    </div>
+  </div>

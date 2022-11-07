@@ -1,0 +1,68 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input
+            type="text"
+            class="form-control"
+            id="brand"
+            required
+            [(ngModel)]="vehicle.brand"
+            name="brand"
+          />
+        </div>
+        <div class="form-group">
+          <label for="model">model</label>
+          <input
+            class="form-control"
+            id="model"
+            required
+            [(ngModel)]="vehicle.model"
+            name="model"
+          />
+        </div>
+  
+        <div class="form-group">
+            <label for="model_year">Model Year</label>
+            <input
+              class="form-control"
+              id="model_year"
+              required
+              [(ngModel)]="vehicle.model_year"
+              name="model_year"
+            />
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input
+              class="form-control"
+              id="price"
+              required
+              [(ngModel)]="vehicle.price"
+              name="price"
+            />
+          </div>
+          <div class="form-group">
+            <label for="vin">vin</label>
+            <input
+              class="form-control"
+              id="vin"
+              required
+              [(ngModel)]="vehicle.vin"
+              name="vin"
+            />
+          </div>
+              <button (click)="saveVehicle()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Vehicle was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newVehicle()">Add</button>
+      </div>
+
+
+
+      
+    </div>
+  </div>

@@ -1,0 +1,57 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="contractNumber">Contract Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contractNumber"
+            required
+            [(ngModel)]="leasing.contractNumber"
+            name="contractNumber"
+          />
+        </div>
+         <div class="form-group">
+          <label for="monthlyRate">Monthly Rate</label>
+          <input
+            class="form-control"
+            id="monthlyRate"
+            required
+            [(ngModel)]="leasing.monthlyRate"
+            name="monthlyRate"
+          />
+        </div>
+  
+        <div class="form-group">
+          
+          <select id="customer_id" class="form-control" name="customer_id" [(ngModel)]="leasing.customer_id">
+            <option value="default">Select Customer</option>
+            <option *ngFor="let customer of selectCustomer"  [value]="customer.id" >
+              {{customer.first_name}} {{customer.last_name}}</option>
+          </select>
+      
+        </div>
+        <div class="form-group">
+            <label for="vehicle">Vehicle</label>
+            <select id="vehicle_id" class="form-control" name="vehicle_id" [(ngModel)]="leasing.vehicle_id">
+              <option value="default">Select Customer</option>
+              <option *ngFor="let vehicle of selectVehicle"  [value]="vehicle.id" >
+                {{vehicle.brand}} {{vehicle.model}} ({{vehicle.model_year}})</option>
+            </select>
+             
+          </div>
+  
+        <button (click)="saveLeasing()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Leasing was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newLeasing()">Add</button>
+      </div>
+
+
+
+      
+    </div>
+  </div>
