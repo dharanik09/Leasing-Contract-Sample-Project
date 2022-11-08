@@ -32,7 +32,10 @@ spring.datasource.username= root
 spring.datasource.password= 
 
 3. Run Spring Boot application
-mvn spring-boot:run
+Spring boot Gradle contains task bootRun which help us to compile and run spring boot application:
+
+Go to the root of the application where build.gradle is available
+Run execute the below command gradle bootRun
 The Spring Boot Server will export API at port 8083.
 
 4. Overview
