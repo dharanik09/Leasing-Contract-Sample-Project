@@ -1,4 +1,4 @@
-# amg_leasing_sample_project
+# AMG Leasing Contact Sample Project
 Allane SE Project 
 
 I will show you how to build a full-stack (Java 11 + Spring Boot version '2.7.4' + Angular 14) and MySQL as a database example with a Leasing Constract Code-Challenge
